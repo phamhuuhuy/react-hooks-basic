@@ -6,6 +6,9 @@ import TodoForm from "./components/TodoForm";
 import PostList from "./components/PostList";
 import Pagination from "./components/Pagination";
 import PostFiltersForm from "./components/PostFiltersForm";
+import Clock from "./components/Clock";
+import BetterClock from "./components/BetterClock"
+import MagicBox from "./components/MagicBox";
 function App() {
   const [todoList, setTodoList] = useState([
     { id: 1, title: "I love u" },
@@ -26,6 +29,8 @@ function App() {
   })
 
   const [postList, setPostList] = useState([]);
+
+  const [clockStatus, setClockStatus] = useState(true)
 
   useEffect(() => {
     async function fetchData() {
@@ -83,6 +88,8 @@ function App() {
     })
   }
 
+ 
+
   return (
     <div className="app">
       <h1>Welcome to my To do List</h1>
@@ -94,6 +101,13 @@ function App() {
         pagination={pagination}
         onPageChange={handlePageChange}
       />
+      
+      {clockStatus && <Clock />}
+      <button onClick={()=>setClockStatus(true)}>Show</button>
+      <button onClick={()=>setClockStatus(false)}>Hide</button>
+      <BetterClock />
+
+      <MagicBox />
     </div>
   );
 }
